@@ -2,7 +2,6 @@ var center = require('center-align');
 var width = process.stdout.columns;
 var height = process.stdout.rows;
 var text = "Movement Terminal Simulation (MTS)";
-var player = require('play-sound')(opts = {})
 var fs = require('fs');
 const readline = require('readline');
 const rl = readline.createInterface({
