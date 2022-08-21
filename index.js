@@ -2,6 +2,7 @@ var center = require('center-align');
 var width = process.stdout.columns;
 var height = process.stdout.rows;
 var text = "Movement Terminal Simulation (MTS)";
+var player = require('play-sound')(opts = {})
 var fs = require('fs');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -9,14 +10,19 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+function info() {
+	console.clear();
+   console.log(center(text, width));
+	console.log(center("For help, check our Github page! (https://github.com/arandomsite/mts)", width));
+}
+
 forwardcenter();
 
 function forwardcenter() {
-	console.clear();
-        console.log(center(text, width));
+		info();
         var data = fs.readFileSync('./ascii/forwardcenter.txt', 'utf8');
         console.log(center(data.toString(), width));
-	rl.question("Direction: ", function (direction) {
+		rl.question("Direction: ", function (direction) {
 		if (direction === "move left") {
 			forwardleftone();
 		} else if (direction === "move right") {
@@ -32,8 +38,7 @@ function forwardcenter() {
 }
 
 function forwardleftone() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/forwardleft1.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -52,8 +57,7 @@ function forwardleftone() {
 }
 
 function forwardrightone() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/forwardright1.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -72,8 +76,7 @@ function forwardrightone() {
 }
 
 function forwardrighttwo() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/forwardright2.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -92,8 +95,7 @@ function forwardrighttwo() {
 }
 
 function forwardrightthree() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/forwardright3.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -112,15 +114,14 @@ function forwardrightthree() {
 }
 
 function forwardrightfour() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/forwardright4.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
                 if (direction === "move left") {
                         forwardrightthree();
                 } else if (direction === "move right") {
-                        forwardrightfour();
+                        forwardrightfive();
                 } else if (direction === "move back") {
                         backrightfour();
                 } else if (direction === "move forward") {
@@ -131,9 +132,27 @@ function forwardrightfour() {
         });
 }
 
+function forwardrightfive() {
+	info();
+        var data = fs.readFileSync('./ascii/forwardright5.txt', 'utf8');
+        console.log(center(data.toString(), width));
+        rl.question("Direction: ", function (direction) {
+                if (direction === "move left") {
+                        forwardrightfour();
+                } else if (direction === "move right") {
+                        forwardrightfive();
+                } else if (direction === "move back") {
+                        backrightfive();
+                } else if (direction === "move forward") {
+                        forwardrightfive();
+                } else {
+                        forwardrightfive();
+                }
+        });
+}
+
 function backcenter() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backcenter.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -152,8 +171,7 @@ function backcenter() {
 }
 
 function backleftone() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backleft1.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -172,8 +190,7 @@ function backleftone() {
 }
 
 function backrightone() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backright1.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -192,8 +209,7 @@ function backrightone() {
 }
 
 function backrighttwo() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backright2.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -212,8 +228,7 @@ function backrighttwo() {
 }
 
 function backrightthree() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backright3.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
@@ -232,21 +247,39 @@ function backrightthree() {
 }
 
 function backrightfour() {
-	console.clear();
-        console.log(center(text, width));
+	info();
         var data = fs.readFileSync('./ascii/backright4.txt', 'utf8');
         console.log(center(data.toString(), width));
         rl.question("Direction: ", function (direction) {
                 if (direction === "move left") {
                         backrightthree();
                 } else if (direction === "move right") {
-                        backrightfour();
+                        backrightfive();
                 } else if (direction === "move back") {
                         backrightfour();
                 } else if (direction === "move forward") {
                         forwardrightfour();
                 } else {
                         backrightfour();
+                }
+        });
+}
+
+function backrightfive() {
+	info();
+        var data = fs.readFileSync('./ascii/backright5.txt', 'utf8');
+        console.log(center(data.toString(), width));
+        rl.question("Direction: ", function (direction) {
+                if (direction === "move left") {
+                        backrightfour();
+                } else if (direction === "move right") {
+                        backrightfive();
+                } else if (direction === "move back") {
+                        backrightfive();
+                } else if (direction === "move forward") {
+                        forwardrightfive();
+                } else {
+                        backrightfive();
                 }
         });
 }
