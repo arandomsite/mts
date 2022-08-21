@@ -8,3 +8,10 @@ MTS requires the node package "center-align" to run. You can install this packag
 
 ## Install & Run
 To install mts on your computer, type in your terminal "git clone https://github.com/arandomsite/mts". This will create a folder on your system called "mts". Enter the mts folder with "cd mts" and then type "node ." or if you want run mts in one command, you can type "cd mts && node ." to run mts.
+
+## Commands
+In MTS, commands are used to move around to simulator movement. Commands include: 
+- "move left"
+- "move right"
+- "move forward"
+- "move back"
